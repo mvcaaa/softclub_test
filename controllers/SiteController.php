@@ -7,9 +7,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
 use app\models\Emails;
-use yii\web\HttpException;
 use yii\helpers\Url;
 
 
@@ -83,7 +81,7 @@ class SiteController extends Controller
     public function actionDelete($id=NULL)
     {
         if (!Emails::deleteAll('id = '.$id))
-            Yii::$app->session->setFlash('error', 'Unable to delete model');
+            Yii::$app->session->setFlash('error', 'Внутренняя ошибка - невозможно удалить запись');
 
         $this->redirect(Url::toRoute('site/index'));
     }
