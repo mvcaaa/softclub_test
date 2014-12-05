@@ -8,6 +8,10 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Emails;
+use yii\web\HttpException;
+use yii\helpers\Url;
+
 
 class SiteController extends Controller
 {
@@ -39,17 +43,29 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
+            ]
         ];
     }
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $model = new Emails;
+
+        if (isset($_POST))
+        {
+            $model->load($_POST);
+
+            if ($model->save())
+            {
+                Yii::$app->session->setFlash('success', 'Model has been saved');
+                $this->redirect(Url::toRoute('site/index'));
+            }
+            else
+                Yii::$app->session->setFlash('error', 'Model could not be saved');
+        }
+
+        $models = Emails::find()->all();
+        echo $this->render('index', array('models' => $models, 'model' => $model));
     }
 
     public function actionLogin()
@@ -75,22 +91,47 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    public function actionContact()
+    private function loadModel($id)
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
+        $model = Emails::find($id);
 
-            return $this->refresh();
-        } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
+        if ($model == NULL)
+            throw new HttpException(404, 'Model not found.');
+
+        return $model;
+    }
+
+    public function actionDelete($id=NULL)
+    {
+        if (!Emails::deleteAll('id = '.$id))
+            Yii::$app->session->setFlash('error', 'Unable to delete model');
+
+        $this->redirect(Url::toRoute('site/index'));
+    }
+
+    public function actionSave($id=NULL)
+    {
+        if ($id == NULL)
+            $model = new Emails;
+        else
+            $model = Emails::find($id);
+
+        if (isset($_POST))
+        {
+            $model->load($_POST);
+
+            if ($model->save())
+            {
+                Yii::$app->session->setFlash('success', 'Model has been saved');
+                $this->redirect(Url::toRoute('site/index'));
+            }
+            else
+                Yii::$app->session->setFlash('error', 'Model could not be saved');
         }
+
+        echo $this->render('save', array('model' => $model));
     }
 
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
+
+
 }

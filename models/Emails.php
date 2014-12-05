@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\validators;
 
 /**
  * This is the model class for table "emails".
@@ -28,8 +29,9 @@ class Emails extends \yii\db\ActiveRecord
     {
         return [
             [['email'], 'required'],
+            [['email'], 'email'],
             [['created_at'], 'safe'],
-            [['email'], 'string', 'max' => 255]
+            [['updated_at'], 'safe']
         ];
     }
 
@@ -40,18 +42,10 @@ class Emails extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'email' => 'Email',
-            'created_at' => 'Created At',
+            'email' => 'Адрес Email',
+            'created_at' => 'Создано',
+            'updated_at' => 'Updated At',
         ];
-    }
-
-    public function behaviors()
-    {
-        return array(
-            'created_at' => array(
-                'class' => 'yii\behaviors\AutoTimestamp'
-            )
-        );
     }
 
 }
