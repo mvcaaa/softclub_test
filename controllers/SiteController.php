@@ -97,29 +97,4 @@ class SiteController extends Controller
         $this->redirect(Url::toRoute('site/index'));
     }
 
-    public function actionSave($id=NULL)
-    {
-        if ($id == NULL)
-            $model = new Emails;
-        else
-            $model = Emails::find($id);
-
-        if (isset($_POST))
-        {
-            $model->load($_POST);
-
-            if ($model->save())
-            {
-                Yii::$app->session->setFlash('success', 'Model has been saved');
-                $this->redirect(Url::toRoute('site/index'));
-            }
-            else
-                Yii::$app->session->setFlash('error', 'Model could not be saved');
-        }
-
-        echo $this->render('save', array('model' => $model));
-    }
-
-
-
 }
