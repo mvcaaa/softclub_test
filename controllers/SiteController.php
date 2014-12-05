@@ -91,16 +91,6 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    private function loadModel($id)
-    {
-        $model = Emails::find($id);
-
-        if ($model == NULL)
-            throw new HttpException(404, 'Model not found.');
-
-        return $model;
-    }
-
     public function actionDelete($id=NULL)
     {
         if (!Emails::deleteAll('id = '.$id))
