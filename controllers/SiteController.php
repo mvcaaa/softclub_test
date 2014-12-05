@@ -57,11 +57,9 @@ class SiteController extends Controller
 
             if ($model->save())
             {
-                Yii::$app->session->setFlash('success', 'Model has been saved');
+                Yii::$app->session->setFlash('success', 'Запись сохранена');
                 $this->redirect(Url::toRoute('site/index'));
             }
-            else
-                Yii::$app->session->setFlash('error', 'Model could not be saved');
         }
 
         $models = Emails::find()->all();

@@ -29,6 +29,7 @@ class Emails extends \yii\db\ActiveRecord
     {
         return [
             [['email'], 'required'],
+            [['email'], 'unique'],
             [['email'], 'email'],
             [['created_at'], 'safe'],
             [['updated_at'], 'safe']

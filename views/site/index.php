@@ -1,7 +1,9 @@
 <?php use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-?>
+foreach(Yii::$app->session->getAllFlashes() as $key => $message) {
+    echo '<div class="alert alert-' . $key . '">' . $message . '</div>';
+} ?>
 
 <?php $form = ActiveForm::begin(array(
     'options' => array('class' => 'form-horizontal', 'role' => 'form'),
