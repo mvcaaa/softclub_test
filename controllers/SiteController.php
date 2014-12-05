@@ -47,7 +47,7 @@ class SiteController extends Controller
             if ($model->save())
             {
                 Yii::$app->session->setFlash('success', 'Запись сохранена');
-                $this->redirect(Url::toRoute('site/index'));
+                return $this->goHome();
             }
         }
 
@@ -83,7 +83,7 @@ class SiteController extends Controller
         if (!Emails::deleteAll('id = '.$id))
             Yii::$app->session->setFlash('error', 'Внутренняя ошибка - невозможно удалить запись');
 
-        $this->redirect(Url::toRoute('site/index'));
+        return $this->goHome();
     }
 
 }

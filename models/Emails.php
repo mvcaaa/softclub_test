@@ -45,7 +45,7 @@ class Emails extends \yii\db\ActiveRecord
             'id' => 'ID',
             'email' => 'Адрес Email',
             'created_at' => 'Создано',
-            'updated_at' => 'Updated At',
+            'updated_at' => 'Обновлено',
         ];
     }
 
