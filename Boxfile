@@ -23,5 +23,6 @@ web1:
     php_upload_max_filesize: 20M
     php_max_file_uploads: 20
     after_build:
+        - "mkdir bin"
         - "curl -sS https://getcomposer.org/installer | php -- --install-dir=bin"
         - "php bin/composer.phar install"
