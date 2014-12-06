@@ -39,20 +39,18 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $model = new Emails;
+        $models = Yii::$app->user->isGuest ? array () : Emails::find()->all();
 
-        if (isset($_POST))
-        {
+
+        if (isset($_POST)) {
             $model->load($_POST);
 
-            if ($model->save())
-            {
+            if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Запись сохранена');
                 return $this->goHome();
             }
         }
-
-        $models = Emails::find()->all();
-        echo $this->render('index', array('models' => $models, 'model' => $model));
+        return $this->render('index', array('models' => $models, 'model' => $model));
     }
 
     public function actionLogin()
@@ -78,9 +76,9 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    public function actionDelete($id=NULL)
+    public function actionDelete($id = NULL)
     {
-        if (!Emails::deleteAll('id = '.$id))
+        if (!Emails::deleteAll('id = ' . $id))
             Yii::$app->session->setFlash('error', 'Внутренняя ошибка - невозможно удалить запись');
 
         return $this->goHome();
