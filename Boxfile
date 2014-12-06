@@ -3,7 +3,7 @@ web1:
     ################################################
     ## GENERAL SETTINGS
     ################################################
-    shared_writable_dirs: [/var/www]
+    shared_writable_dirs: [runtime]
 
     ################################################
     ## WEB SPECIFIC SETTINGS
