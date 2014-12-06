@@ -25,6 +25,7 @@ web1:
     expose_php: off
     after_build:
         - "mkdir bin"
+        - "mkdir runtime"
         - "curl -sS https://getcomposer.org/installer | php -- --install-dir=bin"
         - "php bin/composer.phar install"
         - "php requirements.php"
