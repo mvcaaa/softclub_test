@@ -14,7 +14,7 @@ web1:
     ## PHP SPECIFIC SETTINGS
     ################################################
     php_version: 5.4.14
-    php_extensions: [pdo, pdo_mysql, apc]
+    php_extensions: [pdo_mysql, apc]
     php_date_timezone: Europe/Moscow
     php_max_execution_time: 30
     php_max_input_time: 60
