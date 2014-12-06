@@ -1,7 +1,3 @@
-global:
-  env:
-    - ENV: production
-
 web1:
     document_root: web/
     ################################################
