@@ -1,3 +1,7 @@
+global:
+  env:
+    - ENV: production
+
 web1:
     document_root: web/
     ################################################
@@ -28,5 +32,3 @@ web1:
         - "curl -sS https://getcomposer.org/installer | php -- --install-dir=bin"
         - "php bin/composer.phar install"
         - "php requirements.php"
-    env:
-        - ENV: production
