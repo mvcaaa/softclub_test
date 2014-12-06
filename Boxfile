@@ -14,7 +14,7 @@ web1:
     ## PHP SPECIFIC SETTINGS
     ################################################
     php_version: 5.4.14
-    php_extensions: [mbstring, pdo_mysql, apc, zip]
+    php_extensions: [mcrypt, intl, memcache, mbstring, pdo_mysql, apc, zip]
     php_date_timezone: Europe/Moscow
     php_max_execution_time: 30
     php_max_input_time: 60
@@ -22,6 +22,7 @@ web1:
     php_file_uploads: On
     php_upload_max_filesize: 20M
     php_max_file_uploads: 20
+    php_expose_php: off
     after_build:
         - "mkdir bin"
         - "curl -sS https://getcomposer.org/installer | php -- --install-dir=bin"
