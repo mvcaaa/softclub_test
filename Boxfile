@@ -3,7 +3,7 @@ web1:
     ################################################
     ## GENERAL SETTINGS
     ################################################
-    shared_writable_dirs: [runtime]
+    shared_writable_dirs: [/var/www/runtime]
 
     ################################################
     ## WEB SPECIFIC SETTINGS
@@ -24,9 +24,9 @@ web1:
     php_max_file_uploads: 20
     expose_php: off
     after_build:
-        - "mkdir bin"
-        - "curl -sS https://getcomposer.org/installer | php -- --install-dir=bin"
-        - "php bin/composer.phar install"
+    ##    - "mkdir bin"
+    ##    - "curl -sS https://getcomposer.org/installer | php -- --install-dir=bin"
+    ##    - "php bin/composer.phar install"
         - "php requirements.php"
         - "php yii migrate/up"
         - "php web/info.php"
