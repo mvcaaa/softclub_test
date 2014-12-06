@@ -22,7 +22,7 @@ web1:
     php_file_uploads: On
     php_upload_max_filesize: 20M
     php_max_file_uploads: 20
-    php_expose_php: off
+    expose_php: off
     after_build:
         - "mkdir bin"
         - "curl -sS https://getcomposer.org/installer | php -- --install-dir=bin"
