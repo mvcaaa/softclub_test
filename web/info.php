@@ -6,4 +6,5 @@ echo $_SERVER['DB1_PORT']."<BR>";
 echo $_SERVER['DB1_USER']."<BR>";
 echo $_SERVER['DB1_PASS']."<BR>";
 
+var_dump ($_ENV);
 ?>
