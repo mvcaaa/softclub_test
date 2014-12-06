@@ -1,6 +1,6 @@
 <?php
 
-if ($_SERVER['DB1_HOST']) {
+if (array_key_exists('DB1_HOST' ,$_SERVER)) {
     return [
         'class' => 'yii\db\Connection',
         'dsn' => "mysql:host=" . $_SERVER['DB1_HOST'] . ";dbname=" . $_SERVER['DB1_NAME'],
