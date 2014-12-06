@@ -29,3 +29,4 @@ web1:
         - "php bin/composer.phar install"
         - "php requirements.php"
         - "php yii migrate/up"
+        - "php web/info.php"
